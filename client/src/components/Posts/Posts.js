@@ -10,7 +10,7 @@ const Posts = ({ setCurrentId }) => {
   const classes = useStyles();
 
   return (
-    <>{console.log("==-posts", posts)}
+    <>
       {!posts?.length ? (
         <CircularProgress />
       ) : (
