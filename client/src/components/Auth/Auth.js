@@ -16,8 +16,11 @@ import { useNavigate } from "react-router-dom";
 import Input from "./Input";
 import Icon from "./icon";
 
+import { signin, signup } from '../../redux/actions/authAction';
+
 import useStyles from "./style";
 
+const initialState = { firstName: '', lastName:'', email: '', password: '', confirmPassword: ''}
 const Auth = () => {
   const classes = useStyles();
   const navigate = useNavigate();
@@ -25,12 +28,23 @@ const Auth = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const [formData, setFormData] = useState(initialState);
 
   const handleShowPassword = () => setShowPassword(!showPassword);
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if(isSignup) {
+      dispatch(signup(formData, navigate))
+    } else {
+      dispatch(signin(formData, navigate))
+    }
+  };
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
