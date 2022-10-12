@@ -11,6 +11,7 @@ import {
 import { GoogleLogin } from "react-google-login";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import Input from "./Input";
 import Icon from "./icon";
@@ -19,6 +20,7 @@ import useStyles from "./style";
 
 const Auth = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +43,7 @@ const Auth = () => {
 
     try {
       dispatch({type: 'AUTH', data: {result, token}});
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
