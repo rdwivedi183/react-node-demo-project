@@ -4,12 +4,13 @@ import { stringify } from "querystring";
 const postSchema = mongoose.Schema({
     ttitle: String,
     message: String,
+    name: String,
     creator: String,
     tags: [String],
     selectedFile: String,
-    likeCount: {
-        type: Number,
-        default: 0
+    likes: {
+        type: [String],
+        default: []
     },
     createdAt: {
         type: Date,
